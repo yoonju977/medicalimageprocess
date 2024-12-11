@@ -114,11 +114,11 @@ if upper_data is not None and lower_data is not None:
 
     st.success("Processing Complete!")
 
-    # 최종 결과를 로컬에 저장 (TIFF 포맷)
-    # 현재 디렉토리에 final_result.tiff로 저장됩니다.
-    final_filename = "final_result.tiff"
-    Image.fromarray(final_image).save(final_filename)
-    st.write(f"Final image saved locally as {final_filename}.")
+    # 최종 결과를 로컬에 저장 (img 포맷 - raw binary)
+    output_path = r"output/convex_comb_low_dose_3.img"
+    with open(output_path, "wb") as f:
+        final_image.tofile(f)
+    st.write(f"Final image saved locally as {output_path}.")
 
 else:
     st.warning("Please upload both upper and lower images to proceed.")
